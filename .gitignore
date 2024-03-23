@@ -1,0 +1,31 @@
+# Partly created by https://www.toptal.com/developers/gitignore/api/java,macos,windows,linux,maven
+# Edit at https://www.toptal.com/developers/gitignore?templates=java,macos,windows,linux,maven
+
+
+# ignore maven build folder
+target/
+
+# pom-derived eclipse jdt files
+.project
+.classpath
+org.eclipse.*.prefs
+
+# ignore NoteOverview.json to avoid merge conflicts
+notes/ui/src/main/resources/noteOverview.json
+notes/ui/src/main/resources/testOverview.json
+
+
+notes/core/checkstyle-results.txt
+notes/ui/checkstyle-results.txt
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### macOS Patch ###
+# iCloud generated files
+*.icloud
+.vscode/launch.json
+.vscode/settings.json

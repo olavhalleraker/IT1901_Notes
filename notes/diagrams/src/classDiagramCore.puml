@@ -1,0 +1,116 @@
+@startuml classDiagramCore
+
+class NoteOverview {
+    - List<Note> notes
+    --
+    + NoteOverview()
+    + NoteOverview(List<Note>)
+    + void addNote(Note)
+    + void deleteNote(Note)
+    + void deleteNote(int)
+    + List<Note> getNotes()
+    + Iterator<Note> notesIterator()
+    + void sortNotesByCreatedDate()
+    + void sortNotesByLastEditedDate()
+    + void sortNotesByTitle()
+}
+
+class Note {
+    - String title
+    - String text
+    - LocalDate created
+    - LocalDate edited
+    --
+    + Note(String, String)
+    + Note(String, String, LocalDate, LocalDate)
+    + String getTitle()
+    + void setTitle(String)
+    + String getText()
+    + void setText(String)
+    + LocalDate getCreatedDate()
+    + LocalDate getEditedDate()
+    + void setEditedDate()
+}
+
+class User {
+    - String username
+    - String password
+    - NoteOverview noteOverview
+    --
+    + User(String, String, NoteOverview)
+    + String getUsername()
+    + void setUsername(String)
+    + String getPassword()
+    + void setPassword(String)
+    + NoteOverview getNoteOverview()
+    + Note getNote(Note)
+    + void addNote(Note)
+    + boolean noteExists(Note)
+    + Note getNoteByIndex(int)
+}
+
+class Accounts {
+    - List<User> accounts
+    --
+    + List<User> getAccounts()
+    + void addUser(User)
+    + void removeUser(User)
+    + Iterator<User> iterator()
+    + boolean containsUser(User)
+    + boolean checkValidUserLogin(String, String)
+    + User getUser(String, String)
+    + User getUser(String)
+}
+
+class UserValidation {
+    - USERNAME_REGEX: Pattern 
+    - PASSWORD_REGEX: Pattern
+    --
+    + void checkValidUsername(String)
+    + void checkValidPassword(String)
+    + void isNotExistingUser(String, String, Accounts)
+    + void checkValidUser(String, String)
+    + void checkEqualPassword(String, String)
+    + void allFieldsEmpty(String, String)
+    + void isValidLogin(String, String, Accounts)
+    + boolean isEmpty(String)
+}
+
+class CreatedDateComparator {
+    + compare(Note, Note)
+}
+
+class EditedDateComparator {
+    + compare(Note, Note)
+}
+
+class TitleComparator {
+    + compare(Note, Note)
+}
+
+class Errors {
+    USERNAME_FIELD_EMPTY
+    PWD_FIELD_EMPTY
+    EVERYTHING_EMPTY
+    INVALID_USERNAME
+    INVALID_PWD
+    WRONG_PASSWORD
+    NOT_REGISTERED
+    NOT_EQUAL_PASSWORD
+    NOT_EQUAL_USERNAME
+    EQUAL_NOTE_TITLE
+    NOTE_DOESNT_EXIST
+    INVALID_CREATE_DATE
+    EXISTING_USER
+    NOT_EXISTING_USER
+    SELECT_NOTE
+    EMPTY_TITLE
+    EMPTY_TEXT
+    INVALID_INDEX
+}
+
+
+NoteOverview "1" --> "*" Note : "Contains"
+User "1" --> "1" NoteOverview : "Contains"
+Accounts "1" --> "*" User : "Contains"
+@enduml

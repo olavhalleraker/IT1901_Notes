@@ -1,0 +1,58 @@
+@startuml classDiagramRest
+
+class NotesController {
+  	- static final String NOTES_SERVICE_PATH
+  	- NotesService notesService
+  	--
+  	+ NotesController(NotesService)
+  	+ ResponseEntity<?> getAccounts()
+  	+ User getUser(String)
+  	+ Note getNote(String, String)
+  	+ NoteOverview userNoteOverview(String)
+  	+ void createUser(User)
+  	+ void createNote(Note, String)
+  	+ void deleteNote(String, int)
+  	+ User authenticateUser(String, String)
+  	+ void sortNotesByCreatedDate(String)
+  	+ void sortNotesByTitle(String)
+  	+ void sortNotesByLastEditedDate(String)
+  	+ ObjectMapper objectMapper()
+  	+ void setTestMode()
+  	+ void setNormalMode()
+}
+
+class NotesService {
+	- Accounts accounts
+  	- static final AccountsPersistence PERSISTENCE
+  	--
+  	+ NotesService(Accounts)
+  	+ NotesService()
+  	+ void setTestMode()
+  	+ void setNormalMode()
+  	+ Accounts createTestAccounts()
+  	+ AccountsPersistence getPersistence()
+  	+ static Accounts loadAccounts()
+  	+ static Accounts manuallyCreateAccounts()
+  	+ Accounts getAccounts()
+  	+ boolean validLogin(String, String)
+  	+ User getUserByUsername(String)
+  	+ NoteOverview getNoteOverviewByUsername(String)
+  	+ protected void save()
+  	+ void updateNotes(String)
+  	+ void addNote(String, Note)
+  	+ void createUser(User)
+  	+ NoteOverview getUserNoteOverview(String)
+  	+ void deleteNote(String, int)
+  	+ User getUser(String, String)
+  	+ void sortNotesByCreatedDate(String)
+  	+ void sortNotesByLastEditedDate(String)
+  	+ void sortNotesByTitle(String)
+  	+ Note getNote(String, int)
+}
+
+class RestServerApplication {
+  	+ void main(String[])
+  	+ WebMvcConfigurer corsConfigurer()
+}
+
+@enduml

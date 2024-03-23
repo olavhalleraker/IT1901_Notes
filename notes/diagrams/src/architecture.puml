@@ -1,0 +1,49 @@
+@startuml architecture.puml
+
+component CORE {
+	package core
+	package json
+}
+
+component JACKSON {
+}
+
+json ..> JACKSON
+
+component UI {
+ 	folder ui
+    folder dataAccess
+}
+
+
+component JAVAFX {
+ 	component fxml {
+ 	}
+}
+
+
+
+
+
+component REST {
+	package rest
+}
+
+component SPRINGBOOT{
+
+}
+UI ..> JAVAFX
+UI ..> fxml
+dataAccess ..> json
+dataAccess ..> core
+dataAccess ..> REST
+
+
+REST ..> json
+REST ..> core
+REST ..> SPRINGBOOT
+
+
+
+
+@enduml

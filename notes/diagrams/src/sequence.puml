@@ -1,0 +1,15 @@
+@startuml sequenceDiagram
+    actor User
+    User -> UI: input username, password
+    UI -> LoginController: loginUserAction()
+    LoginController -> UserValidation: isValidLogin()
+    UserValidation -> LoginController
+    LoginController -> Dataaccess: loginUserAction()
+    Dataaccess -> RestServer: HTTP Post
+    RestServer -> Dataaccess: User
+    Dataaccess -> LoginController: User
+    LoginController -> AppController: setScene()
+    AppController -> UI
+    UI -> User
+    
+@enduml

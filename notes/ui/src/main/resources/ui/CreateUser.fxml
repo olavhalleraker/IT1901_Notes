@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="createuserpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="createUsernameInput" layoutX="78.0" layoutY="85.0" />
+      <TextField fx:id="createPasswordInput" layoutX="78.0" layoutY="231.0" />
+      <TextField fx:id="confirmPasswordInput" layoutX="78.0" layoutY="317.0" />
+      <Label layoutX="78.0" layoutY="67.0" text="Enter username:" />
+      <Label layoutX="78.0" layoutY="291.0" text="Confirm password:" />
+      <Button fx:id="createUserButton" layoutX="202.0" layoutY="409.0" mnemonicParsing="false" onAction="#createUser" prefHeight="64.0" prefWidth="96.0" text="Create user" />
+      <Label layoutX="89.0" layoutY="14.0" prefHeight="41.0" prefWidth="127.0" text="Create your Notes user!" />
+      <Text fx:id="errorMessageDisplay" layoutX="84.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter password, must contain:&#10;- At least 8 characters&#10;- At least one uppercase letter&#10;- At least one lowercase letter&#10;- At least one number" />
+   </children>
+</AnchorPane>

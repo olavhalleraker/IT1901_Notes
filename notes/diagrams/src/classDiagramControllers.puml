@@ -1,0 +1,88 @@
+@startuml classDiagramControllers
+
+class AbstractController {
+    - NotesAccess dataAccess
+    + setDataAccess(NotesAccess)
+    + getDataAccess(): NotesAccess
+    + setScene(Controllers, Event, NotesAccess)
+}
+
+class AppController {
+    - List<String> sortList
+    - AnchorPane noteoverviewpane
+    - ListView<Note> NoteListView
+    - Button NewNoteButton
+    - Button DeleteNoteButton
+    - ComboBox<String> sortComboBox
+    - Text errorMessage
+    --
+    + AppController()
+    + startScene()
+    + newNote(ActionEvent): void
+    + deleteNote(ActionEvent): void
+    + editNote(ActionEvent): void
+    + sortNoteOverview(): void
+    + updateView(): void
+}
+
+class NoteEditController {
+    - noteeditpane: AnchorPane
+    - noteInputTitle: TextField
+    - saveNoteButton: Button
+    - undoChangesButton: Button
+    - noteInputText: TextArea
+    - errorMessage: Text
+    - oldNote: Note
+    - newNote: Note
+    --
+    + loadEditInfo(): void
+    + setText(Note): void
+    + saveNote(ActionEvent): void
+    + undo(ActionEvent): void
+}
+
+class NoteController {
+    - notepane: AnchorPane
+    - newNoteInputTitle: TextField
+    - saveNoteButton: Button
+    - newNoteInputText: TextArea
+    - errorMessage: Text
+    --
+    + newNote(ActionEvent): void
+}
+
+class LoginController {
+    - usernameInput: TextField
+    - passwordInput: TextField
+    - errorMessage: Text
+    - loginButton: Button
+    - createUserButton: Button
+    --
+    + createUserAction(ActionEvent): void
+    + loginUserAction(ActionEvent): void
+}
+
+class CreateUserController {
+    - createUsernameInput: TextField
+    - createPasswordInput: TextField
+    - confirmPasswordInput: TextField
+    - createUser: Button
+    - errorMessageDisplay: Text
+    - username: String
+    - password: String
+    - confirmPassword: String
+    --
+    + createUser(ActionEvent): void
+}
+
+AbstractController --|> NotesAccess
+AbstractController --|> FXMLLoader
+AbstractController --|> Stage
+NotesAccess --|> Dataaccess
+LoginController --|> AbstractController
+AppController --|> AbstractController
+NoteController --|> AbstractController
+NoteEditController --|> AbstractController
+CreateUserController --|> AbstractController
+
+@enduml
